@@ -1,5 +1,5 @@
-from auto_versioner.version import Version
-from auto_versioner.git_version_loader import GitVersionLoader
+from auto_versioner import Version
+from auto_versioner import GitVersionLoader
 
 
 class TestGitVersionLoader:

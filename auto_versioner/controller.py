@@ -20,7 +20,8 @@ class Controller:
             sys.exit(3)
 
     def run(self):
-        pass
+        self._collect_information()
+        self._update_version_information()
 
     def _collect_information(self):
         file_version = self._file_loader.highest_version

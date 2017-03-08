@@ -21,12 +21,12 @@ class Version:
         self.version_tag = "{}.{}.{}.{}".format(major, minor, revision, fix)
 
     def __init_from_version_tag__(self, version_tag):
-        self.version_tag = version_tag
         version_comps = version_tag.split('.')
         self.major_version = int(version_comps[0])
         self.minor_version = int(version_comps[1])
-        self.revision = int(version_comps[2] or 0)
-        self.fix_version = int(version_comps[3] or 0)
+        self.revision = int(version_comps[2] if len(version_comps) > 2 else 0)
+        self.fix_version = int(version_comps[3] if len(version_comps) == 4 else 0)
+        self.version_tag = "{}.{}.{}.{}".format(self.major_version, self.minor_version, self.revision, self.fix_version)
 
     def __str__(self):
         return self.version_tag

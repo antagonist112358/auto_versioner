@@ -90,7 +90,7 @@ setup(
     # pip to create the appropriate form of executable for the target platform.
     entry_points={
         'console_scripts': [
-            'kafka-osi=sparkpredict.services.kafka.threaded_listener:main'
+            'auto-versioner=auto_versioner.main.run'
         ],
     },
 )
