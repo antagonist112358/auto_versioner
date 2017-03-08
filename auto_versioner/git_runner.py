@@ -1,22 +1,31 @@
 import re
 import subprocess
-import auto_versioner
+from auto_versioner import auto_versioner_path
 
 
 class GitRunner:
     _version_tag_regex = re.compile('[0-9]+\.[0-9]+\.[0-9]+\.*')
 
-    def __init__(self, git_repo_path=auto_versioner.auto_versioner_path):
+    def __init__(self, git_repo_path=auto_versioner_path):
         self.git_installed = GitRunner._check_git_installed()
         self.git_repo_path = git_repo_path
+        self._version_tags = None
 
     def get_version_tags(self):
-        all_tags = self._run_if_installed("tag").split('\n')
-        return [x for x in all_tags if GitRunner._version_tag_regex.match(x)]
+        if self._version_tags:
+            return self._version_tags
+        else:
+            all_tags = self._run_if_installed("tag").split('\n')
+            self._version_tags = [x for x in all_tags if GitRunner._version_tag_regex.match(x)]
+            return self._version_tags
 
     @property
     def latest_version_tag(self):
-        return self.get_version_tags()[-1]
+        v_tags = self.get_version_tags()
+        if v_tags:
+            return v_tags[-1]
+        else:
+            return None
 
     @property
     def current_branch_name(self):

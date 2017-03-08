@@ -34,7 +34,10 @@ class VersionFileLoader:
 
     @property
     def highest_version(self):
-        return functools.reduce(lambda v1, v2: v1 if v1 > v2 else v2, self._loaded_versions)
+        if len(self._loaded_versions) > 0:
+            return functools.reduce(lambda v1, v2: v1 if v1 > v2 else v2, self._loaded_versions)
+        else:
+            return None
 
     def _check_for_version_files(self):
         found_files = []
