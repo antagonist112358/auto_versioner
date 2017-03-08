@@ -1,0 +1,10 @@
+from auto_versioner.version import Version
+
+from auto_versioner.version_file_loader import VersionFileLoader
+
+
+class TestVersionFileLoader:
+    def test_loads_self_version_file(self):
+        loader = VersionFileLoader()
+        min_version = Version("0.0.0.1")
+        assert min_version < loader.highest_version
