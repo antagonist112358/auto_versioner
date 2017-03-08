@@ -29,7 +29,7 @@ class GitRunner:
 
     @property
     def current_branch_name(self):
-        return self._run_if_installed("rev-parse --abbrev-ref HEAD")
+        return self._run_if_installed("rev-parse --abbrev-ref HEAD").rstrip('\n')
 
     def git_exec(self, commands):
         if isinstance(commands, str):

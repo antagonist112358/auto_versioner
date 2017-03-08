@@ -7,7 +7,7 @@ from auto_versioner.version import Version
 
 
 class VersionFileLoader:
-    _version_file_names = [name + ".py" for name in ['version', 'VERSION', 'Version', '__version', '__Version']]
+    _version_file_names = [name + ".py" for name in ['version', '__version', '__version__', '_version_']]
     _version_attribs = ['VERSION', 'version', '__version__']
 
     def __init__(self, loader_path=auto_versioner.current_working_path):

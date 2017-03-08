@@ -95,6 +95,12 @@ class Controller:
                     with open(os.path.join(self.project_path, "version.py"), "w") as file:
                         file.write("VERSION = {}".format(git_version))
                     return git_version
+                else:
+                    # Major/Minor version numbers are the same, so just pick the highest
+                    revision = self._determine_revision_number()
+                    print("Git revision number is: {}".format(revision))
+                    nv = newest_version
+                    return Version(nv.major_version, nv.minor_version, nv.revision + revision, nv.fix_version)
 
             # git / file versions only differ by revision or fix version
             else:
